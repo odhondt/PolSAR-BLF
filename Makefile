@@ -46,8 +46,8 @@
 # (name of the source files without the .cpp extension)
 #-------------------------------------------------------
 
-#EIGEN_PATH = -I/your/eigen/location
-EIGEN_PATH = -I/home/olivier/local
+EIGEN_PATH = -I/your/eigen/location
+#EIGEN_PATH = -I/home/olivier/local
 
 # Files which do not necessarily require external libraries to run.
 CIMG_FILES = PolSAR-BLF
