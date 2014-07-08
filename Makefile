@@ -46,11 +46,12 @@
 # (name of the source files without the .cpp extension)
 #-------------------------------------------------------
 
-EIGEN_PATH = -I/your/eigen/location
-#EIGEN_PATH = -I/home/olivier/local
-
 # Files which do not necessarily require external libraries to run.
 CIMG_FILES = PolSAR-BLF
+
+# Indicate the location of the Eigen library 
+EIGEN_PATH = -I/your/eigen/location
+# example: EIGEN_PATH = -I/home/olivier/local
 
 # If your compiler does not support openmp, please comment the following line.
 OPENMP_FLAG = -fopenmp
