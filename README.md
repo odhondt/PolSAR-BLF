@@ -1,13 +1,15 @@
-# PolSAR-BLF: Iterative Bilateral Filtering of Polarimetric SAR data.
+## PolSAR-BLF: Iterative Bilateral Filtering of Polarimetric SAR data.
 
 - This C++ code implements the method described in the paper:
 
 [1] D'Hondt, O., Guillaso, S. and Hellwich, O. **Iterative Bilateral Filtering of Polarimetric SAR Data**,
 _Selected Topics in Applied Earth Observations and Remote Sensing, IEEE Journal of, 2013, 6, 1628-1639_
 
+- If you use this code in a publication or public presentation, please cite the above reference.
+
 - This code is based on the C++ CImg library http://cimg.sourceforge.net/ and uses Eigen http://eigen.tuxfamily.org for matrix computations.
 
-## Installation
+### Installation
 
 - CImg is included in this distribution as it consists in a single header file `CImg.h`.
 
@@ -19,7 +21,7 @@ _Selected Topics in Applied Earth Observations and Remote Sensing, IEEE Journal 
 
 - The filter can then be compiled by typing `make olinux` (normally `make linux` is sufficient, but it does not enable compiler optimization resulting in a much slower execution.)
 
-## Usage
+### Usage
 
 - To display help and default parameter values, simply type:
 
