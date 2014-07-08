@@ -19,9 +19,9 @@ _Selected Topics in Applied Earth Observations and Remote Sensing, IEEE Journal 
 
 - Eigen has to be downloaded from http://eigen.tuxfamily.org/
 
-- To indicate the location of Eigen to the compiler, please edit the file `Makefile` and set the EIGEN_PATH variable
+- To indicate the location of Eigen to the compiler, please edit the file `Makefile` and set the `EIGEN_PATH` variable
 
-- If there is a problem with multi-core, it is possible to disable openmp by simply removing the option -fopenmp.
+- If there is a problem with multi-core, it is possible to disable openmp by simply commenting the `OPENMP_FLAG` line in the makefile.
 
 - The filter can then be compiled by typing `make olinux` (normally `make linux` is sufficient, but it does not enable compiler optimization resulting in a much slower execution.)
 
