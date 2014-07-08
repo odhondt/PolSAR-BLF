@@ -11,6 +11,10 @@ _Selected Topics in Applied Earth Observations and Remote Sensing, IEEE Journal 
 
 ### Installation
 
+- To get the package you can download the zip file from the project page or you can clone the directory
+
+`git clone https://github.com/odhondt/PolSAR-BLF`
+
 - CImg is included in this distribution as it consists in a single header file `CImg.h`.
 
 - Eigen has to be downloaded from http://eigen.tuxfamily.org/
@@ -25,7 +29,7 @@ _Selected Topics in Applied Earth Observations and Remote Sensing, IEEE Journal 
 
 - To display help and default parameter values, simply type:
 
-> ./PolSAR-BLF -h
+`./PolSAR-BLF -h`
 
 - The default parameters will give a result identical to the ones of the publication [1] with affine invariant distance.
 
