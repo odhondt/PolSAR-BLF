@@ -1,6 +1,8 @@
- /*
+/*
  #
  #  File        : csar_soft.h
+ #  
+ #  Description : A stupid file totally obsolete but necessary.
  #
  #  Copyright   : Stéphane Guillaso
  #
@@ -33,7 +35,7 @@
  #  The fact that you are presently reading this means that you have had
  #  knowledge of the CeCILL license and that you accept its terms.
  #
-*/
+ */
 
 #ifndef CSAR_PROGNAME
 #define CSAR_PROGNAME "routines_name"
@@ -65,34 +67,8 @@ typedef unsigned short uint16_t;
 #include<vector>
 #include<cmath>
 
-#ifdef csar_use_eigen
-#include<Eigen/Core>
-#include<Eigen/Dense>
-using namespace Eigen;
-#endif
-
-#ifdef csar_use_gdal
-#include <gdal_priv.h>
-#include <cpl_conv.h>
-#include <cpl_string.h>
-#endif
-
-#ifdef csar_use_rapidxml
-#include <rapidxml.hpp>
-#include <rapidxml_print.hpp>
-#endif
-
-// triangle.o
-#ifdef csar_use_triangle
-#define VOID int
-#define REAL double
-#include <triangle.h>
-#endif
-// fftw
-#include<fftw3.h>
-
+#define cimg_display 0
 #define cimglist_plugin "csar.h"
-//#define cimglist_plugin1 "csar_viewer.h"
 #include <CImg.h>
 
 typedef struct {int p;} int_one_param_struct;
@@ -167,26 +143,6 @@ void disp_begin_prog(std::string ifname, std::string ofname){
 //----------------------------------------------------------------------------------------------------
 // READ XML FILE AND TRANSFERT IT INTO A BUFFER (USEFUL FOR RAPIDXML)
 //----------------------------------------------------------------------------------------------------
-#pragma mark -
-#pragma mark xml2txt: transform xml file into a text variable.
-#ifdef csar_use_rapidxml
-//! Transform xml file into a text variable to be analyzed by rapid xml
-char* xml2txt(const char* fileName){
-  std::ifstream file (fileName);
-  if (file.fail()) {
-    std::cerr << "Error in opening " << fileName << std::endl;
-    exit(1);
-  }
-  file.seekg(0, std::ios::end);
-  size_t length = file.tellg();
-  file.seekg(0, std::ios::beg);
-  char *buffer = new char[length+1];
-  file.read(buffer, length);
-  buffer[length] = '\0';
-  file.close();
-  return buffer;
-}
-#endif
 
 //----------------------------------------------------------------------------------------------------
 // CONVERT A VARIABLE INTO A STRING

@@ -35,7 +35,7 @@ _Selected Topics in Applied Earth Observations and Remote Sensing, IEEE Journal 
 
 - The input format is .cimg which is a binary file with a simple header.
 
-- The simplest way to use our code is to first convert your data to the .rat format with the RADAR-TOOLS software (http://sourceforge.net/projects/radartools.berlios/). Then you can use the functions `import_rat` and `cimg2rat` that can be found in the directory `io_rat` to convert to and from cimg. Invoking these programs with `-h` option will display help. 
+- The simplest way to use our code is to first convert your data to the .rat format with the RADAR-TOOLS software (http://sourceforge.net/projects/radartools.berlios/). Then you can use the functions `import_rat` and `export_rat` that can be found in the directory `io_rat` to convert to and from cimg. Invoking these programs with `-h` option will display help. 
 
 - **IMPORTANT:** The input data must be in the form of a 3x3 polarimetric covariance or coherency matrix with a minimum number of looks equal to the dimension of the matrix so that the matrices are full rank.
 

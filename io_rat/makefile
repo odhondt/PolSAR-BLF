@@ -13,21 +13,15 @@ PREFIX = ./.
 #####                        DO NOT CHANGE FROM HERE                       ####
 ###############################################################################
 ###############################################################################
+
+## Change the location of your g++, normally: CXX = g++ for a standard linux distribution
 CXX = g++
+
+
 BIN = $(PREFIX)
 LIB = $(PREFIX)/lib
 
-CIMG_FILE     = CImg-1.5.1
-EIGEN_FILE    = eigen-eigen-43d9075b23ef
-FFTW3_FILE    = fftw-3.3.2
-GDAL_FILE     = gdal-1.9.1
-RAPIDXML_FILE = rapidxml-1.13
-TRIANGLE_FILE = triangle
 
-#--------------------------------------------------
-# Set compilation flags allowing to customize CImg
-#--------------------------------------------------
-X11PATH = /usr/X11R6
 
 # Flags to enable strict code standards
 #CIMG_ANSI_CFLAGS = -ansi -ffast-math -pedantic
@@ -38,21 +32,19 @@ CIMG_ANSI_CFLAGS = -ffast-math
 CIMG_DEBUG_CFLAGS = -O3 -Dcimg_verbosity=3 -Dcimg_strict_warnings #-g
 
 
-# Flags to enable OpenMP support.
+# Flags to enable OpenMP support. Under MacOS-X LLVM do not use openmp
 #CIMG_OPENMP_CFLAGS = 
 CIMG_OPENMP_CFLAGS = -Dcimg_use_openmp -fopenmp
 
 # Flags to enable OpenCV support.
 CIMG_OPENCV_CFLAGS = 
 CIMG_OPENCV_LDFLAGS = 
-#CIMG_OPENCV_CFLAGS = -Dcimg_use_opencv -I/usr/include/opencv
-#CIMG_OPENCV_LDFLAGS = -lcv -lhighgui
 
 # Flags to enable the use of the X11 library.
 # (X11 is used by CImg to handle display windows)
 # !!! For 64bits systems : replace -L$(X11PATH)/lib by -L$(X11PATH)/lib64 !!!
-CIMG_X11_CFLAGS = -I$(X11PATH)/include
-CIMG_X11_LDFLAGS = -L$(X11PATH)/lib -lpthread -lX11
+#CIMG_X11_CFLAGS = -I$(X11PATH)/include
+#CIMG_X11_LDFLAGS = -L$(X11PATH)/lib -lpthread -lX11
 
 # Flags to enable fast image display, using the XSHM library (when using X11).
 # !!! Seems to randomly crash when used on MacOSX, so do not use it on MacOSX !!!
@@ -78,24 +70,25 @@ CIMG_XRANDR_LDFLAGS =
 
 # Flags to enable native support for PNG image files, using the PNG library.
 # ( http://www.libpng.org/ )
-#CIMG_PNG_CFLAGS = 
-#CIMG_PNG_LDFLAGS = 
-CIMG_PNG_CFLAGS = -Dcimg_use_png
-CIMG_PNG_LDFLAGS = -lpng -lz
+CIMG_PNG_CFLAGS = 
+CIMG_PNG_LDFLAGS = 
+#CIMG_PNG_CFLAGS = -Dcimg_use_png
+#CIMG_PNG_LDFLAGS = -lpng -lz
 
 # Flags to enable native support for JPEG image files, using the JPEG library.
 # ( http://www.ijg.org/ )
-#CIMG_JPEG_CFLAGS = 
-#CIMG_JPEG_LDFLAGS = 
-CIMG_JPEG_CFLAGS = -Dcimg_use_jpeg
-CIMG_JPEG_LDFLAGS = -ljpeg
+CIMG_JPEG_CFLAGS = 
+CIMG_JPEG_LDFLAGS = 
+#CIMG_JPEG_CFLAGS = -Dcimg_use_jpeg
+
+3CIMG_JPEG_LDFLAGS = -ljpeg
 
 # Flags to enable native support for TIFF image files, using the TIFF library.
 # ( http://www.libtiff.org/ )
-#CIMG_TIFF_CFLAGS = 
-#CIMG_TIFF_LDFLAGS = 
-CIMG_TIFF_CFLAGS = -Dcimg_use_tiff
-CIMG_TIFF_LDFLAGS = -ltiff
+CIMG_TIFF_CFLAGS = 
+CIMG_TIFF_LDFLAGS = 
+#CIMG_TIFF_CFLAGS = -Dcimg_use_tiff
+#CIMG_TIFF_LDFLAGS = -ltiff
 
 # Flags to enable native support for MINC2 image files, using the MINC2 library.
 # ( http://en.wikibooks.org/wiki/MINC/Reference/MINC2.0_Users_Guide )
@@ -120,10 +113,10 @@ CIMG_FFMPEG_LDFLAGS =
 
 # Flags to enable native support for compressed .cimgz files, using the Zlib library.
 # ( http://www.zlib.net/ )
-# CIMG_ZLIB_CFLAGS = 
-# CIMG_ZLIB_LDFLAGS = 
-CIMG_ZLIB_CFLAGS = -Dcimg_use_zlib
-CIMG_ZLIB_LDFLAGS = -lz
+CIMG_ZLIB_CFLAGS = 
+CIMG_ZLIB_LDFLAGS = 
+#CIMG_ZLIB_CFLAGS = -Dcimg_use_zlib
+#CIMG_ZLIB_LDFLAGS = -lz
 
 # Flags to enable native support of most classical image file formats, using the Magick++ library.
 # ( http://www.imagemagick.org/Magick++/ )
@@ -235,11 +228,11 @@ all: 	_io_
 #                                           I/O DIRECTORY                                          #
 ####################################################################################################
 
-_io_:  cimg2rat \
+_io_:  export_rat \
 	import_rat
 
-cimg2rat: cimg2rat.cpp
-	$(CXX) $(CONF_CFLAGS) cimg2rat.cpp -o cimg2rat $(CONF_LDFLAGS)
+export_rat: export_rat.cpp
+	$(CXX) $(CONF_CFLAGS) export_rat.cpp -o export_rat $(CONF_LDFLAGS)
 
 import_rat: import_rat.cpp
 	$(CXX) $(CONF_CFLAGS) import_rat.cpp -o import_rat $(CONF_LDFLAGS)

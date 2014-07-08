@@ -1,8 +1,8 @@
 /*
  #
- #  File        : cimg2rat.cpp
+ #  File        : export_rat
  #
- #  Description : See below
+ #  Description : A file converter from CImg to RAT (Version 1).
  #  Copyright   : Stéphane Guillaso
  #
  #  License     : CeCILL v2.0
@@ -34,21 +34,12 @@
  #  The fact that you are presently reading this means that you have had
  #  knowledge of the CeCILL license and that you accept its terms.
  #
-*/
-
-
-/*
- * File: cimg2rat.cpp
- *       ( C++ source file)
- *
- * Description: A file converter from RAT (version 1.0 - Display) to CImg format.
- *
  */
 
 
 #include<iostream>
 
-#define CSAR_PROGNAME "cimg2rat"
+#define CSAR_PROGNAME "export_rat"
 #define CSAR_USAGE "Export a \"cimg\" file format into a \"rat\" file format" 
 #define CSAR_VERSION  "1.0.0"
 
@@ -156,6 +147,6 @@ int main (int argc, char **argv) {
   if (mode_doubleimg) {cimg2rat<double>(ifname, ofname, 101, 5); return 0;}
   if (mode_doublevec) {cimg2rat<double>(ifname, ofname, 210, 5); return 0;}
 	if (mode != -1) cimg2rat<float>(ifname, ofname, mode, idl_type);*/
-  std::cerr <<"Not yet implemented: see cimg2rat -h for more information!\n" << std::endl;
+  std::cerr <<"Not yet implemented: see export_rat -h for more information!\n" << std::endl;
   return 0;
 }

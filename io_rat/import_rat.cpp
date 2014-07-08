@@ -1,9 +1,8 @@
 /*
  #
- #  File        : csar_soft.h
+ #  File        : import_rat
  #
- #  Description : See below
- #
+ #  Description : A file converter from RAT (Version 1 or 2) to CImg format.
  #  Copyright   : Stéphane Guillaso
  #
  #  License     : CeCILL v2.0
@@ -35,18 +34,7 @@
  #  The fact that you are presently reading this means that you have had
  #  knowledge of the CeCILL license and that you accept its terms.
  #
-*/
-
-
-/*
- * File: import_rat.cpp
- *       ( C++ source file)
- *
- * Description: Import RAT file.
- *
-
-*/
-
+ */
 
 #define CSAR_PROGNAME "import_rat"
 #define CSAR_USAGE    "Import RAT file"
