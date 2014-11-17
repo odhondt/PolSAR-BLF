@@ -232,11 +232,14 @@ CImgList<T>& polsar_blf_le(float gammaS = 2.0, float gammaR = 2.0, bool TRICK=fa
       }
     }
 
-  // Making an image of matrices to speed-up computations
+  // Making an image of matrices and pre-computing log to speed-up computations
   using namespace Eigen;
   CImg<Matrix3cf> Data((*this)(0), "xy");
+  CImg<Matrix3cf> logData((*this)(0), "xy");
+#pragma omp parallel for
   cimg_forXY((*this)(0), x, y){
     Data(x, y) = (*this).get_eigenmat_at(x, y);
+    logData(x, y) = LogMat(Data(x, y));
   }
 
 
@@ -260,7 +263,8 @@ CImgList<T>& polsar_blf_le(float gammaS = 2.0, float gammaR = 2.0, bool TRICK=fa
       // Computing the weights
       for(int t = tmin; t <= tmax; ++t)
         for(int s = smin; s <= smax; ++s) {
-          const float D = (LogMat(Data(x, y)) - LogMat(Data(s, t))).squaredNorm();
+          //const float D = (LogMat(Data(x, y)) - LogMat(Data(s, t))).squaredNorm();
+          const float D = (logData(x, y) - logData(s, t)).squaredNorm();
           float W = 0.0;
           if(!std::isnan(D)) W = std::exp(- D / gr2) * WIm(s - x + H, t - y + H);
           TsFilt += W*Data(s, t);
@@ -293,7 +297,8 @@ CImgList<T>& polsar_blf_le(float gammaS = 2.0, float gammaR = 2.0, bool TRICK=fa
       for(int t = tmin; t <= tmax; ++t) {
         for(int s = smin; s <= smax; ++s) {
           if(s != x || t != y) {
-            float D = (LogMat(Data(x, y)) - LogMat(Data(s, t))).squaredNorm();
+            //float D = (LogMat(Data(x, y)) - LogMat(Data(s, t))).squaredNorm();
+            const float D = (logData(x, y) - logData(s, t)).squaredNorm();
             float WR = 0.0;
             if(!std::isnan(D)){
               WR = std::exp(- D / gr2);
