@@ -282,7 +282,6 @@ CImgList<T>& polsar_blf_le(float gammaS = 2.0, float gammaR = 2.0, bool TRICK=fa
     }
   }
   else{
-    std::cout<<"prout\n";
 #pragma omp parallel for firstprivate(TsFilt)
     cimg_forXY(Res[0], x, y){
       cnt++;
