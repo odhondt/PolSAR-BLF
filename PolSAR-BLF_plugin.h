@@ -252,7 +252,6 @@ CImgList<T>& polsar_blf_le(float gammaS = 2.0, float gammaR = 2.0, bool TRICK=fa
       cnt++;
       float SumWeight = 0;
 
-      Matrix3cf TsFilt;
       TsFilt.setZero();
 
       const int tmin = cimg::max(y-H, 0),
@@ -284,6 +283,7 @@ CImgList<T>& polsar_blf_le(float gammaS = 2.0, float gammaR = 2.0, bool TRICK=fa
   else{
 #pragma omp parallel for firstprivate(TsFilt)
     cimg_forXY(Res[0], x, y){
+#pragma omp atomic
       cnt++;
       float SumWeight = 0.0, WRMax = 0.0;
       TsFilt.setZero();
@@ -383,6 +383,7 @@ CImgList<float>& polsar_blf_kl(float gammaS = 2.0, float gammaR = 2.0,bool TRICK
   if(!TRICK){
 #pragma omp parallel for firstprivate(TsFilt)
     cimg_forXY(Res[0], x, y){
+#pragma omp atomic
       ++cnt;
       float SumWeight = 0;
       TsFilt.setZero();
